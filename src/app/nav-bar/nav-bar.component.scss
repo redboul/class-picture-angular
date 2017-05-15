@@ -1,0 +1,17 @@
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4599fa;
+    color: white;
+    padding: 8px;
+    &-logo {
+        font-size: 2rem;
+    }
+    &-classes {
+        display: flex;
+        .mat-button {
+            text-transform: uppercase;
+        }
+    }
+}
