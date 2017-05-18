@@ -13,6 +13,10 @@ export class NavBarComponent implements OnInit {
   constructor(private classService: ClassService) {}
 
   ngOnInit() {
-    this.classService.getClasses().subscribe(classes => this.classes = classes);
+    console.log('ngOnInit');
+    this.classService.getClasses().subscribe(classes => {
+      this.classes = classes;
+      console.log('retrieving classes!', classes);
+    });
   }
 }
