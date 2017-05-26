@@ -31,7 +31,7 @@ describe('NavBarComponent', () => {
     fixture.detectChanges();
   });
 
-  fit('should create nav bar', async(() => {
+  it('should create nav bar', async(() => {
     fixture.whenStable().then(() => {
       fixture.detectChanges();
 
@@ -41,3 +41,4 @@ describe('NavBarComponent', () => {
     });
   }));
 });
+

@@ -1,7 +1,12 @@
+import { DebugElement, Component } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
+
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { AppComponent } from './app.component';
+import { ClassService } from './class.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -10,27 +15,30 @@ describe('AppComponent', () => {
         RouterTestingModule
       ],
       declarations: [
-        AppComponent
-      ],
+        AppComponent,
+        NavBarStubComponent
+      ]
     }).compileComponents();
   }));
 
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
+  let app, de: DebugElement;
 
-  it(`should have as title 'app works!'`, async(() => {
+  beforeEach(() => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works!');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
+    de = fixture.debugElement;
+    app = de.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('app works!');
+  });
+
+  it('should create the app', async(() => {
+    expect(app).toBeTruthy();
+    expect(app.title).toEqual('app works!');
+    expect(de.query(By.css('.nav-bar')).nativeElement.textContent).toEqual('Nav');
   }));
 });
+
+@Component({
+  selector: 'nav-bar',
+  template: '<div class="nav-bar">Nav</div>'
+})
+class NavBarStubComponent {}
