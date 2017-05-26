@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import {Store} from '@ngrx/store';
 import { ClassService } from '../class.service';
 
 @Component({
@@ -8,13 +10,13 @@ import { ClassService } from '../class.service';
 })
 export class NavBarComponent implements OnInit {
 
-  private classes: Array<any> = [];
+  private classes: Observable<any[]>;
 
-  constructor(private classService: ClassService) {}
+  constructor(private classService: ClassService, private store: Store<any[]>) {
+    this.classes = store.select('classes');
+  }
 
   ngOnInit() {
-    this.classService.getClasses().subscribe(classes => {
-      this.classes = classes;
-    });
+    this.classService.getClasses();
   }
 }

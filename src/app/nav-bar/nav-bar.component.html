@@ -3,6 +3,6 @@
     Ecole Primaire Jeanne Labourbe
   </div>
   <div class="navBar-classes">
-    <div *ngFor="let class of classes"><button md-button>{{class.name}}</button></div> 
+    <div *ngFor="let class of (classes | async)"><button md-button>{{class.name}}</button></div> 
   </div>
 </div>
